@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Metrics Pack cho AI Tutor – Diagnostic Refresher, Track 1 Day 20.">
+  <title>AI Tutor · Metrics Pack</title>
+  <style>
+    :root {
+      --ink: #14213d;
+      --muted: #60708d;
+      --paper: #f7f8fc;
+      --surface: #ffffff;
+      --line: #dce2ed;
+      --navy: #101a35;
+      --blue: #3f6ef7;
+      --blue-soft: #edf2ff;
+      --mint: #18a77a;
+      --mint-soft: #e9f9f3;
+      --amber: #c77710;
+      --amber-soft: #fff5df;
+      --red: #c84b5a;
+      --red-soft: #fff0f2;
+      --shadow: 0 18px 55px rgba(20, 33, 61, .10);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 80% 2%, rgba(63,110,247,.12), transparent 26rem),
+        radial-gradient(circle at 5% 34%, rgba(24,167,122,.10), transparent 22rem),
+        var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.58;
+    }
+
+    a { color: inherit; }
+    .shell { max-width: 1240px; margin: 0 auto; padding: 26px; }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .mark {
+      width: 44px; height: 44px; border-radius: 13px;
+      display: grid; place-items: center;
+      color: white; font-weight: 850; letter-spacing: -.04em;
+      background: linear-gradient(135deg, var(--blue), #7d5cf5);
+      box-shadow: 0 10px 26px rgba(63,110,247,.25);
+    }
+    .brand strong { display:block; font-size: 15px; }
+    .brand span { display:block; color: var(--muted); font-size: 12px; }
+    .identity { text-align:right; color:var(--muted); font-size:13px; }
+    .identity strong { color:var(--ink); display:block; }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 58px;
+      border-radius: 30px;
+      color: white;
+      background:
+        radial-gradient(circle at 88% 18%, rgba(110,231,183,.33), transparent 14rem),
+        radial-gradient(circle at 72% 82%, rgba(124,92,245,.38), transparent 18rem),
+        var(--navy);
+      box-shadow: var(--shadow);
+    }
+    .hero::after {
+      content:""; position:absolute; inset:0; pointer-events:none;
+      background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: linear-gradient(to left, #000, transparent 70%);
+    }
+    .eyebrow { margin: 0 0 12px; text-transform:uppercase; letter-spacing:.16em; font-weight:800; font-size:12px; color:#8ef0cb; }
+    h1 { max-width: 750px; margin:0; font-size: clamp(38px, 6vw, 72px); line-height:1.02; letter-spacing:-.05em; }
+    .hero p.lead { max-width: 680px; color:#cbd5ea; font-size:18px; margin:22px 0 0; }
+    .hero-flow { position:relative; z-index:1; display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:34px; }
+    .hero-flow span { padding:10px 14px; border:1px solid rgba(255,255,255,.18); border-radius:999px; background:rgba(255,255,255,.08); font-size:13px; }
+    .hero-flow b { color:#8ef0cb; }
+
+    .layout { display:grid; grid-template-columns: 230px minmax(0,1fr); gap:26px; margin-top:30px; align-items:start; }
+    .toc {
+      position: sticky; top:20px; padding:18px;
+      border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,.88); backdrop-filter:blur(10px);
+    }
+    .toc strong { font-size:12px; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); }
+    .toc a { display:block; text-decoration:none; padding:9px 10px; margin-top:3px; border-radius:10px; color:#4d5d79; font-size:13px; }
+    .toc a:hover { background:var(--blue-soft); color:var(--blue); }
+    main { min-width:0; }
+    section.block { margin-bottom:26px; padding:34px; background:rgba(255,255,255,.93); border:1px solid var(--line); border-radius:var(--radius); box-shadow:0 10px 34px rgba(20,33,61,.055); }
+    .section-head { display:flex; gap:16px; align-items:flex-start; margin-bottom:24px; }
+    .section-no { flex:0 0 auto; display:grid; place-items:center; width:42px; height:42px; border-radius:13px; background:var(--blue-soft); color:var(--blue); font-weight:900; }
+    h2 { margin:0; font-size:26px; line-height:1.18; letter-spacing:-.025em; }
+    h3 { margin:25px 0 11px; font-size:17px; }
+    p { margin: 8px 0; }
+    .subtitle { color:var(--muted); font-size:14px; margin-top:5px; }
+    .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .grid-2 { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+    .card { padding:18px; border:1px solid var(--line); border-radius:16px; background:#fff; }
+    .card small { display:block; color:var(--muted); font-weight:750; text-transform:uppercase; letter-spacing:.08em; margin-bottom:7px; }
+    .card strong { display:block; font-size:16px; line-height:1.35; }
+    .card p { color:#4e5d77; font-size:14px; }
+    .accent { border-color:#cbd8ff; background:linear-gradient(145deg, #fff, var(--blue-soft)); }
+    .mint { border-color:#bee9da; background:linear-gradient(145deg, #fff, var(--mint-soft)); }
+    .amber { border-color:#f1d49c; background:linear-gradient(145deg, #fff, var(--amber-soft)); }
+    .danger { border-color:#f4c4ca; background:linear-gradient(145deg, #fff, var(--red-soft)); }
+    .quote { padding:20px 22px; border-left:4px solid var(--mint); background:var(--mint-soft); border-radius:0 14px 14px 0; font-size:17px; }
+    .pill { display:inline-flex; align-items:center; gap:6px; padding:5px 9px; border-radius:999px; font-size:11px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; }
+    .pill.blue { color:#2651cc; background:#e5ecff; }
+    .pill.green { color:#0f805d; background:#dcf5eb; }
+    .pill.orange { color:#9b5b08; background:#ffebbd; }
+    .pill.red { color:#a53241; background:#ffe0e5; }
+    .decision { border:2px solid var(--blue); box-shadow:0 14px 34px rgba(63,110,247,.12); }
+    .decision-title { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+    .decision-title h3 { margin:0; font-size:22px; }
+    .formula { margin:16px 0; padding:18px; border-radius:15px; background:var(--navy); color:white; font-weight:750; letter-spacing:.01em; }
+
+    table { width:100%; border-collapse:separate; border-spacing:0; overflow:hidden; border:1px solid var(--line); border-radius:14px; font-size:13px; }
+    th { text-align:left; color:#50607b; background:#f1f4fa; font-size:11px; text-transform:uppercase; letter-spacing:.07em; }
+    th, td { padding:13px 14px; vertical-align:top; border-bottom:1px solid var(--line); }
+    tr:last-child td { border-bottom:0; }
+    td:first-child { font-weight:750; color:#263653; }
+    code { padding:2px 6px; border-radius:6px; background:#edf1f8; color:#284b9b; font-size:.92em; }
+
+    .checklist { list-style:none; margin:0; padding:0; display:grid; gap:9px; }
+    .checklist li { position:relative; padding-left:27px; color:#40506c; }
+    .checklist li::before { content:"✓"; position:absolute; left:0; top:1px; width:19px; height:19px; display:grid; place-items:center; border-radius:6px; background:var(--mint-soft); color:var(--mint); font-size:12px; font-weight:900; }
+    .loop { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; align-items:stretch; }
+    .loop-step { position:relative; padding:16px; border-radius:15px; border:1px solid var(--line); background:#fff; min-height:126px; }
+    .loop-step:not(:last-child)::after { content:"→"; position:absolute; right:-16px; top:48%; z-index:2; color:var(--blue); font-size:20px; font-weight:900; }
+    .loop-step b { display:block; color:var(--blue); margin-bottom:6px; }
+    .loop-step p { font-size:13px; color:var(--muted); }
+    .callout { margin-top:18px; padding:18px; border-radius:15px; background:var(--blue-soft); border:1px solid #cbd8ff; }
+    .callout strong { color:#2c55cc; }
+    .gate { display:flex; gap:12px; align-items:flex-start; margin-top:22px; padding:15px 17px; border:1px dashed #a8b5ca; border-radius:14px; background:#fafbfe; color:#52617a; font-size:13px; }
+    .gate b { flex:0 0 auto; color:var(--mint); }
+    .note { color:var(--muted); font-size:12px; }
+    .pending { margin-top:22px; padding:20px; border-radius:16px; border:1px solid #f0cf8e; background:var(--amber-soft); }
+    .pending h3 { margin:0 0 10px; color:#8a520b; }
+    .pending label { display:block; margin:7px 0; color:#6f4b1d; }
+    .pending input { margin-right:8px; accent-color:var(--amber); }
+    .footer { padding:32px 0 48px; text-align:center; color:var(--muted); font-size:13px; }
+
+    @media (max-width: 900px) {
+      .layout { grid-template-columns:1fr; }
+      .toc { position:static; display:flex; overflow:auto; gap:4px; }
+      .toc strong { display:none; }
+      .toc a { white-space:nowrap; }
+      .grid-3, .grid-2, .loop { grid-template-columns:1fr; }
+      .loop-step:not(:last-child)::after { content:"↓"; right:auto; left:49%; top:auto; bottom:-20px; }
+      .hero { padding:38px 28px; }
+      section.block { padding:25px 20px; }
+    }
+    @media print {
+      body { background:white; }
+      .shell { max-width:none; padding:0; }
+      .topbar, .toc { display:none; }
+      .hero { border-radius:0; box-shadow:none; break-after:page; }
+      .layout { display:block; }
+      section.block { box-shadow:none; break-inside:avoid; }
+      a { text-decoration:none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="mark">AI</div>
+        <div><strong>AI Tutor Lab</strong><span>Product Metrics · Day 20</span></div>
+      </div>
+      <div class="identity"><strong>Trần Thị Thuý · 2A202602960</strong>Track 1 · Metrics Pack</div>
+    </header>
+
+    <section class="hero">
+      <p class="eyebrow">AI Tutor · Diagnostic Refresher</p>
+      <h1>Đo khoảnh khắc người học thoát khỏi một điểm kẹt.</h1>
+      <p class="lead">Một Metrics Pack nối liền hành vi tạo giá trị, nhịp nhu cầu tự nhiên, retention theo cơ hội, product loop và tracking có thể kiểm chứng.</p>
+      <div class="hero-flow" aria-label="Chuỗi quyết định của Metrics Pack">
+        <span><b>01</b> Core action</span><b>→</b>
+        <span><b>02</b> Event-response cadence</span><b>→</b>
+        <span><b>03</b> Successful resolution</span><b>→</b>
+        <span><b>04</b> Opportunity retention</span><b>→</b>
+        <span><b>05</b> Learning loop</span>
+      </div>
+    </section>
+
+    <div class="layout">
+      <nav class="toc" aria-label="Mục lục">
+        <strong>Metrics Pack</strong>
+        <a href="#scope">00 · Phạm vi</a>
+        <a href="#core-action">01 · Core Action</a>
+        <a href="#nature">02 · Nature &amp; cadence</a>
+        <a href="#metrics">03 · Metric System</a>
+        <a href="#retention">04 · Retention</a>
+        <a href="#loop">05 · Product Loop</a>
+        <a href="#tracking">06 · Tracking</a>
+        <a href="#review">Tự soi &amp; xác nhận</a>
+      </nav>
+
+      <main>
+        <section class="block" id="scope">
+          <div class="section-head">
+            <div class="section-no">00</div>
+            <div><h2>Phạm vi</h2><p class="subtitle">Một use case, một persona, một vấn đề đủ cụ thể để đo.</p></div>
+          </div>
+          <div class="grid-3">
+            <article class="card accent"><small>Dự án</small><strong>AI Tutor — Diagnostic Refresher</strong><p>Trợ giúp ngay trong bài khi người học gặp một khái niệm hoặc logic chưa hiểu.</p></article>
+            <article class="card"><small>Persona</small><strong>Học viên tự học trực tuyến</strong><p>Đang học một mình, không có giảng viên/trợ giảng hỗ trợ tức thời.</p></article>
+            <article class="card mint"><small>Use case</small><strong>Gỡ một điểm vướng trong bài</strong><p>Nhận đúng phần ôn cần thiết rồi quay lại mạch học hiện tại.</p></article>
+          </div>
+          <h3>Core job — viết bằng lời người học</h3>
+          <div class="quote">“Khi gặp một phần chưa hiểu, tôi muốn làm rõ đúng điểm đang vướng ngay trong ngữ cảnh bài học để có thể tiếp tục học mà không phải rời bài và mất mạch.”</div>
+          <h3>Evidence và ranh giới</h3>
+          <div class="grid-2">
+            <article class="card"><small>Đã quan sát</small><strong>Một người học gặp tình huống tương tự 3 lần gần đây</strong><p>Tìm kiếm bên ngoài mất khoảng 5–10 phút/lần và làm gián đoạn mạch học. Đây là dữ liệu Day 17, không phải benchmark thị trường.</p></article>
+            <article class="card amber"><small>Chưa chứng minh</small><strong>Pattern, cơ chế và tác động dài hạn</strong><p>Chưa biết pain có lặp ở nhiều học viên, option A/B/C nào tốt hơn, hay trợ giúp có cải thiện kết quả học dài hạn.</p></article>
+          </div>
+        </section>
+
+        <section class="block" id="core-action">
+          <div class="section-head">
+            <div class="section-no">01</div>
+            <div><h2>Core Action Card</h2><p class="subtitle">Không đo “AI tạo câu trả lời”; đo việc người học thực sự nhận value.</p></div>
+          </div>
+          <article class="card decision">
+            <div class="decision-title"><span class="pill blue">Đề xuất cốt lõi</span><h3>Hoàn thành một refresher tại điểm vướng và quay lại bài học</h3></div>
+            <p>Người học xem hoặc tương tác với phần ôn tại đúng điểm vướng, chứng minh mức hiểu tối thiểu, rồi tiếp tục nội dung gốc trong cùng phiên học.</p>
+          </article>
+          <div style="overflow:auto; margin-top:18px">
+            <table>
+              <thead><tr><th>Thành phần</th><th>Định nghĩa</th></tr></thead>
+              <tbody>
+                <tr><td>Target user</td><td>Học viên tự học trực tuyến đang gặp một điểm chưa hiểu trong bài.</td></tr>
+                <tr><td>Core job</td><td>Làm rõ đúng điểm vướng đủ nhanh và đủ tin cậy để tiếp tục học.</td></tr>
+                <tr><td>Core action</td><td>Hoàn thành một refresher tại điểm vướng và quay lại bài học.</td></tr>
+                <tr><td>Object</td><td>Một <em>learning block</em> cụ thể gắn với đoạn nội dung/bài học.</td></tr>
+                <tr><td>Preconditions</td><td>Có phiên học đang hoạt động; xác định được đoạn đang vướng; có nội dung refresher gắn đúng context.</td></tr>
+                <tr><td>Completion rule</td><td>Refresher đã được xem/tương tác đến hết; người học vượt một kiểm tra hiểu ngắn hoặc xác nhận “đã rõ”; sau đó quay lại nội dung gốc trong ≤ 2 phút.</td></tr>
+                <tr><td>Core value</td><td>Thoát khỏi điểm kẹt mà vẫn giữ mạch và quyền kiểm soát việc học.</td></tr>
+                <tr><td>Evidence of value</td><td>Hiểu tối thiểu được xác nhận + lesson resumed; không chỉ là AI đã sinh nội dung.</td></tr>
+                <tr><td>Candidate event</td><td><code>learning_block_resolved</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h3>Tự kiểm 5 tiêu chí</h3>
+          <div class="grid-3">
+            <article class="card mint"><small>✓ Gần core value</small><p>Action kết thúc đúng lúc người học đủ hiểu để tiếp tục bài.</p></article>
+            <article class="card mint"><small>✓ Có thể lặp lại</small><p>Mỗi điểm vướng mới tạo một cơ hội giá trị mới.</p></article>
+            <article class="card mint"><small>✓ Có thể quan sát</small><p>Có điều kiện hoàn tất và event rõ ràng.</p></article>
+            <article class="card mint"><small>✓ Có ý nghĩa</small><p>Tăng successful resolutions tốt hơn tăng số lượt hỏi AI.</p></article>
+            <article class="card mint"><small>✓ Có thể tác động</small><p>Team có thể cải thiện trigger, relevance, UX và recovery.</p></article>
+          </div>
+          <div class="gate"><b>GATE 1 · PASS</b><span>Có actor, object, completion rule; đạt 5/5 tiêu chí; không phải “mở app”, “hỏi AI” hay output hệ thống.</span></div>
+        </section>
+
+        <section class="block" id="nature">
+          <div class="section-head">
+            <div class="section-no">02</div>
+            <div><h2>Action Nature &amp; Cadence</h2><p class="subtitle">Nature trước, nurture sau. Đây là hành vi phản ứng theo sự kiện, không phải daily habit.</p></div>
+          </div>
+          <div style="overflow:auto">
+            <table>
+              <thead><tr><th>Thành phần</th><th>Kết luận cho AI Tutor</th></tr></thead>
+              <tbody>
+                <tr><td>Actor</td><td>Learner; phân tích chính ở cấp user, đối chiếu thêm theo learning session và learning block.</td></tr>
+                <tr><td>Intent</td><td>Hiểu một điểm cụ thể đủ để tiếp tục bài, không phải “dùng AI nhiều hơn”.</td></tr>
+                <tr><td>Trigger</td><td>Một điểm vướng thật trong lúc học; do người học chủ động gọi, tham gia chẩn đoán hoặc chấp nhận gợi ý minh bạch.</td></tr>
+                <tr><td>Effort</td><td>Mục tiêu 1–3 phút; yêu cầu đọc/tương tác ngắn, có thể bỏ qua, sửa hoặc hoàn tác.</td></tr>
+                <tr><td>Value timing</td><td>Giá trị xuất hiện trong cùng phiên khi người học hiểu đủ và quay lại bài.</td></tr>
+                <tr><td>State</td><td>Đoạn vướng, loại trợ giúp, kết quả kiểm tra hiểu, preference và lịch sử recovery — không suy diễn thành đánh giá năng lực.</td></tr>
+                <tr><td>Dependency</td><td>Phụ thuộc nội dung bài, chất lượng context, mức khó, kiến thức nền và độ tin cậy của giải thích.</td></tr>
+                <tr><td>Repeat condition</td><td>Một learning block mới xuất hiện trong một phiên học tiếp theo.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="formula">Đối với học viên tự học trực tuyến, core action “hoàn thành một refresher tại điểm vướng và quay lại bài” xuất hiện theo sự kiện trong phiên học, vì chỉ có lý do lặp khi một learning block thật sự xuất hiện. Do đó, nhịp đo phù hợp là theo eligible opportunity / learning session ở cấp learner; weekly chỉ là lớp tổng hợp báo cáo.</div>
+          <div class="grid-2">
+            <article class="card mint"><small>Nature</small><strong>Event-response</strong><p>Điểm vướng là lý do quay lại tự nhiên. Không cần notification để bịa frequency.</p></article>
+            <article class="card amber"><small>Nurture hợp lệ</small><strong>Giảm effort, tăng relevance</strong><p>Giữ context, nhớ format ưa thích, cho phép sửa/hoàn tác. Nurture khuếch đại chứ không tạo nhu cầu giả.</p></article>
+          </div>
+          <div class="gate"><b>GATE 2 · PASS</b><span>Cadence đi từ trigger và repeat condition; không ép daily/weekly habit.</span></div>
+        </section>
+
+        <section class="block" id="metrics">
+          <div class="section-head">
+            <div class="section-no">03</div>
+            <div><h2>Metric System</h2><p class="subtitle">Mọi metric đều quy về successful learning-block resolution.</p></div>
+          </div>
+          <h3>Activation</h3>
+          <div class="grid-3">
+            <article class="card"><small>Start event</small><strong><code>tutor_help_started</code></strong><p>Lần đầu learner chủ động mở/đồng ý dùng trợ giúp tại một điểm vướng.</p></article>
+            <article class="card mint"><small>Activation event</small><strong><code>learning_block_resolved</code></strong><p>Refresher hoàn tất, hiểu tối thiểu được xác nhận và bài học được tiếp tục.</p></article>
+            <article class="card"><small>Time window</small><strong>Trong cùng phiên, ≤ 10 phút</strong><p>Tính từ lần help started đầu tiên; phù hợp với job “thoát điểm kẹt ngay”.</p></article>
+          </div>
+          <h3>Engagement — tối đa hai góc đo</h3>
+          <div class="grid-2">
+            <article class="card accent"><small>Frequency theo cơ hội</small><strong>Successful resolution rate</strong><p><code>learning_block_resolved / eligible_help_opportunity</code>, xem theo learner và loại trigger.</p></article>
+            <article class="card accent"><small>Depth / chất lượng</small><strong>Verified resume rate</strong><p>Tỷ lệ resolution có check pass và learner tiếp tục nội dung gốc ≥ 5 phút hoặc hoàn tất phần kế tiếp.</p></article>
+          </div>
+          <h3>North Star Metric</h3>
+          <article class="card decision">
+            <span class="pill blue">Unit + quality + frequency</span>
+            <div class="formula">Weekly Successful Learning-Block Resolutions = số learning blocks / tuần được giải quyết, có check hiểu đạt và learner quay lại bài trong ≤ 2 phút.</div>
+            <p class="note">Tuần là cửa sổ tổng hợp cho team, không phải tần suất team ép lên người học.</p>
+          </article>
+          <h3>Leading indicators</h3>
+          <div class="grid-3">
+            <article class="card"><small>1 · Start → complete</small><strong>Refresher completion rate</strong><p>Nếu learner bỏ giữa chừng, core action không thể xảy ra; chỉ báo sớm effort hoặc relevance có vấn đề.</p></article>
+            <article class="card"><small>2 · Quality</small><strong>First-attempt check pass rate</strong><p>Phản ánh phần ôn có giúp hiểu đúng ngay, dự báo khả năng resume thay vì hỏi lặp vô ích.</p></article>
+            <article class="card"><small>3 · Flow</small><strong>Median time-to-resume</strong><p>Thời gian ngắn hơn, với quality giữ nguyên, dự báo khả năng duy trì mạch học.</p></article>
+          </div>
+          <h3>Counter-metrics</h3>
+          <div class="grid-3">
+            <article class="card danger"><small>Không gây hại</small><strong>Post-help abandonment rate</strong><p>Learner không quay lại bài trong 10 phút sau trợ giúp.</p></article>
+            <article class="card danger"><small>Không chẩn đoán sai</small><strong>Correction / undo rate</strong><p>Learner sửa chẩn đoán, đổi câu hỏi hoặc hoàn tác vì trợ giúp lệch ý.</p></article>
+            <article class="card danger"><small>Không tối ưu bằng chi phí</small><strong>Cost per successful resolution</strong><p>Chi phí AI trên mỗi resolution đạt quality threshold.</p></article>
+          </div>
+          <div class="gate"><b>GATE 3A · PASS</b><span>Activation có start/event/window; NSM đủ unit, quality threshold, frequency; leading có rationale; counter-metric bảo vệ trải nghiệm và chi phí.</span></div>
+        </section>
+
+        <section class="block" id="retention">
+          <div class="section-head">
+            <div class="section-no">04</div>
+            <div><h2>Retention Definition</h2><p class="subtitle">Opportunity-based retention phù hợp hơn D7 vì learning block xuất hiện không đều.</p></div>
+          </div>
+          <div style="overflow:auto">
+            <table>
+              <thead><tr><th>Thành phần</th><th>Định nghĩa có thể tính</th></tr></thead>
+              <tbody>
+                <tr><td>Unit</td><td>Learner (<code>user_id</code>), kèm đối chiếu theo course và learning session.</td></tr>
+                <tr><td>Cohort entry</td><td>Lần đầu phát sinh <code>learning_block_resolved</code> đạt quality threshold.</td></tr>
+                <tr><td>Return event</td><td>Một <code>learning_block_resolved</code> mới cho learning block khác trong phiên học đủ điều kiện sau đó.</td></tr>
+                <tr><td>Window</td><td>4 <em>eligible learning sessions</em> tiếp theo, tối đa trong 28 ngày sau cohort entry.</td></tr>
+                <tr><td>Threshold</td><td>≥ 2 successful resolutions trong ≥ 2 phiên khác nhau, khi có learning block / help opportunity mới.</td></tr>
+                <tr><td>Segment</td><td>Học viên tự học có ≥ 2 eligible sessions sau cohort entry; tách theo option A/B/C và loại nội dung, không trộn người không có cơ hội quay lại.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout"><strong>Metric hiển thị:</strong> 4-session Opportunity Retention = % learner trong cohort đạt threshold trong 4 eligible sessions kế tiếp (≤ 28 ngày).</div>
+          <p class="note">So sánh với natural cycle của course, cohort cùng segment và benchmark cùng category nếu có nguồn. Không dùng một con số D7 trơ trọi.</p>
+          <div class="gate"><b>GATE 3B · PASS</b><span>Đủ 6 thành phần, return event là value event và window khớp cadence event-response.</span></div>
+        </section>
+
+        <section class="block" id="loop">
+          <div class="section-head">
+            <div class="section-no">05</div>
+            <div><h2>Product Loop</h2><p class="subtitle">Progress + event-response loop; reason to return là một điểm vướng mới, không phải notification.</p></div>
+          </div>
+          <div class="loop">
+            <article class="loop-step"><b>1 · Natural trigger</b><p>Learner gặp một khái niệm/logic chưa hiểu trong bài đang học.</p></article>
+            <article class="loop-step"><b>2 · Core action</b><p>Chọn/đồng ý trợ giúp, hoàn thành refresher và xác nhận mức hiểu tối thiểu.</p></article>
+            <article class="loop-step"><b>3 · Immediate value</b><p>Thoát điểm kẹt, quay lại bài nhanh mà không chuyển ngữ cảnh.</p></article>
+            <article class="loop-step"><b>4 · Saved investment</b><p>Lưu context, loại trợ giúp hiệu quả và preference — không gắn nhãn năng lực.</p></article>
+          </div>
+          <div class="loop" style="margin-top:18px">
+            <article class="loop-step"><b>5 · Next trigger</b><p>Một learning block khác xuất hiện trong phiên/course tiếp theo.</p></article>
+            <article class="loop-step"><b>6 · Lower effort</b><p>AI dùng context và preference đã lưu để đưa trợ giúp phù hợp nhanh hơn.</p></article>
+            <article class="loop-step"><b>7 · Repeat value</b><p>Learner giải quyết thêm một block với quality threshold giữ nguyên.</p></article>
+            <article class="loop-step"><b>8 · Stronger loop</b><p>Niềm tin có kiểm soát tăng; system học format hiệu quả, không ép frequency.</p></article>
+          </div>
+          <div class="callout"><strong>Metric hypothesis:</strong> Nếu loop này hoạt động, <em>4-session Opportunity Retention</em> sẽ tăng trong 4 eligible sessions tiếp theo (tối đa 28 ngày), vì context và preference đã lưu làm giảm effort và tăng độ phù hợp khi learner gặp một learning block mới.</div>
+          <div class="gate"><b>GATE 4A · PASS</b><span>Loop có hai chu kỳ, reason to return tự nhiên và hypothesis trỏ thẳng về metric Phase 3–4.</span></div>
+        </section>
+
+        <section class="block" id="tracking">
+          <div class="section-head">
+            <div class="section-no">06</div>
+            <div><h2>Tracking nhanh</h2><p class="subtitle">8 core events; mỗi event trả lời một câu hỏi metric cụ thể.</p></div>
+          </div>
+          <div style="overflow:auto">
+            <table>
+              <thead><tr><th>Event</th><th>Ý nghĩa</th><th>Thời điểm ghi nhận</th><th>Metric sử dụng</th></tr></thead>
+              <tbody>
+                <tr><td><code>help_opportunity_created</code></td><td>Có một điểm vướng đủ điều kiện để đo opportunity.</td><td>Khi learner chủ động đánh dấu điểm vướng hoặc hệ thống hiển thị gợi ý có lý do minh bạch; một lần/block.</td><td>Successful resolution rate; exposure denominator.</td></tr>
+                <tr><td><code>tutor_help_started</code></td><td>Learner bắt đầu luồng trợ giúp A/B/C.</td><td>Khi learner yêu cầu, mở chẩn đoán, hoặc chấp nhận gợi ý — không bắn khi gợi ý mới được render.</td><td>Activation start; opportunity → start conversion.</td></tr>
+                <tr><td><code>refresher_completed</code></td><td>Learner đã xem/tương tác đến điểm kết thúc refresher.</td><td>Khi trạng thái completion hợp lệ được đạt; không dựa vào click mở.</td><td>Refresher completion rate.</td></tr>
+                <tr><td><code>comprehension_check_submitted</code></td><td>Learner gửi một kiểm tra hiểu ngắn.</td><td>Sau submit, kèm <code>is_correct</code>, <code>attempt_no</code>, <code>block_id</code>.</td><td>First-attempt check pass rate; quality threshold.</td></tr>
+                <tr><td><code>lesson_resumed</code></td><td>Learner quay lại nội dung gốc sau trợ giúp.</td><td>Khi lesson có focus và learner tiếp tục đọc/tương tác ≥ 10 giây; kèm <code>seconds_from_help</code>.</td><td>Median time-to-resume; verified resume.</td></tr>
+                <tr><td><code>learning_block_resolved</code></td><td>Core value event tổng hợp: hiểu tối thiểu đạt + lesson resumed.</td><td>Server/analytics tạo một lần khi check pass hoặc “đã rõ” hợp lệ và resume ≤ 2 phút.</td><td>Activation; NSM; retention; resolution rate.</td></tr>
+                <tr><td><code>tutor_help_corrected</code></td><td>Learner sửa câu hỏi/chẩn đoán/thẻ hoặc đổi cơ chế vì trợ giúp lệch.</td><td>Khi thay đổi được lưu hoặc option bị thay thế; kèm <code>correction_type</code>.</td><td>Correction rate; quality counter-metric.</td></tr>
+                <tr><td><code>tutor_help_abandoned</code></td><td>Luồng trợ giúp không đi tới resolution và learner không quay lại bài.</td><td>Sau 10 phút không có completion/resume hoặc learner chủ động thoát.</td><td>Post-help abandonment; funnel diagnostics.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h3>Properties tối thiểu</h3>
+          <p><code>event_id</code> · <code>occurred_at</code> · <code>user_id</code> · <code>course_id</code> · <code>lesson_id</code> · <code>session_id</code> · <code>block_id</code> · <code>help_session_id</code> · <code>option</code> (A/B/C) · <code>trigger_type</code> · <code>content_type</code> · <code>experiment_variant</code></p>
+          <h3>Acceptance criteria</h3>
+          <ol>
+            <li><strong>Completion thật:</strong> <code>learning_block_resolved</code> chỉ được tạo khi refresher hoàn tất, check hiểu đạt hoặc learner xác nhận hợp lệ, và <code>lesson_resumed</code> xảy ra trong ≤ 2 phút. Việc AI sinh xong câu trả lời không đủ điều kiện.</li>
+            <li><strong>Không ghi trùng:</strong> với cùng <code>user_id + block_id + help_session_id</code>, chỉ có tối đa một <code>learning_block_resolved</code>. Reload, retry, autosave và back/forward dùng cùng idempotency key, không tạo event mới.</li>
+            <li><strong>Denominator sạch:</strong> <code>help_opportunity_created</code> chỉ ghi một lần cho mỗi block đủ điều kiện; không tạo từ prefetch, bot, tài khoản nội bộ hoặc gợi ý chưa hiển thị.</li>
+            <li><strong>Thời gian chính xác:</strong> time-to-resume tính từ timestamp server của completion đến <code>lesson_resumed</code>; chuẩn hóa UTC, hiển thị theo timezone learner.</li>
+          </ol>
+          <div class="gate"><b>GATE 4B · PASS</b><span>8 event đều map về metric; có 4 acceptance criteria bảo vệ completion, deduplication, denominator và thời gian.</span></div>
+        </section>
+
+        <section class="block" id="review">
+          <div class="section-head">
+            <div class="section-no">✓</div>
+            <div><h2>Tự soi lỗi &amp; xác nhận của học viên</h2><p class="subtitle">Bài logic xuyên suốt; ba lựa chọn cốt lõi đã được học viên đọc và xác nhận trước khi nộp.</p></div>
+          </div>
+          <ul class="checklist">
+            <li>Core action là hành vi nhận value, không phải thao tác UI hay output của AI.</li>
+            <li>Activation là successful resolution đầu tiên, không phải đăng nhập hoặc onboarding.</li>
+            <li>Frequency theo eligible opportunity; không ép daily habit.</li>
+            <li>Reason to return là learning block mới, không phải notification.</li>
+            <li>Retention dùng 4 eligible sessions, không dùng D7 trơ trọi.</li>
+            <li>Mọi event đều map về ít nhất một metric và mọi metric chính đều có event để tính.</li>
+            <li>Counter-metrics bảo vệ chất lượng, flow và chi phí.</li>
+          </ul>
+          <div class="pending">
+            <h3>Learner confirmation — đã hoàn tất ngày 06/10/2026</h3>
+            <label><input type="checkbox" checked disabled> Tôi chọn core action “hoàn thành một refresher tại điểm vướng và quay lại bài học”.</label>
+            <label><input type="checkbox" checked disabled> Tôi đồng ý cadence là event-response, đo theo eligible opportunity / learning session.</label>
+            <label><input type="checkbox" checked disabled> Tôi đã đọc và đồng ý metric hypothesis tại mục 05.</label>
+          </div>
+          <p class="note">Revision note: Bản Metrics Pack chọn “successful resolution” thay vì “số lượt hỏi AI” để tránh game metric và giữ liên kết trực tiếp với core value.</p>
+        </section>
+      </main>
+    </div>
+    <footer class="footer">Track 1 · Day 20 · AI Tutor Metrics Pack · Trần Thị Thuý · 2A202602960</footer>
+  </div>
+</body>
+</html>
